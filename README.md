@@ -12,6 +12,7 @@ A modern IP lookup app built with Next.js — detects your public IP address, re
   <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-3-38bdf8?logo=tailwindcss">
   <img alt="CI" src="https://github.com/itsmrroot/PublicIP/actions/workflows/ci.yml/badge.svg">
   <img alt="Deploy" src="https://github.com/itsmrroot/PublicIP/actions/workflows/deploy.yml/badge.svg">
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
 </p>
 
 ## Live Demo
@@ -29,14 +30,14 @@ A modern IP lookup app built with Next.js — detects your public IP address, re
 
 ## Tech Stack
 
-| Layer     | Choice                                   |
-| --------- | ----------------------------------------- |
-| Framework | [Next.js 14](https://nextjs.org/) (App Router) |
-| Language  | TypeScript                                |
-| Styling   | Tailwind CSS                              |
-| Animation | Framer Motion                             |
-| Map       | Leaflet + React Leaflet (OpenStreetMap / CARTO tiles) |
-| Icons     | Lucide                                    |
+| Layer     | Choice                                                                   |
+| --------- | ------------------------------------------------------------------------ |
+| Framework | [Next.js 14](https://nextjs.org/) (App Router)                          |
+| Language  | TypeScript                                                                |
+| Styling   | Tailwind CSS                                                              |
+| Animation | Framer Motion                                                             |
+| Map       | Leaflet + React Leaflet (OpenStreetMap / CARTO tiles)                    |
+| Icons     | Lucide                                                                    |
 | IP data   | [ipwho.is](https://ipwho.is) with [ipapi.co](https://ipapi.co) fallback |
 
 ## Getting Started
@@ -90,4 +91,4 @@ It's currently deployed to **GitHub Pages**: on every push to `main`, [`.github/
 
 ## License
 
-No license has been set for this project yet.
+[MIT](LICENSE) © Bashar Salmo
