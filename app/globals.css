@@ -2,20 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #f8fafc;
+  --surface: rgba(15, 23, 42, 0.035);
+  --surface-hover: rgba(15, 23, 42, 0.06);
+  --border: rgba(15, 23, 42, 0.1);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+  --grid-line: rgba(15, 23, 42, 0.05);
+  --shadow-color: rgba(15, 23, 42, 0.12);
+
+  /* Solid (non-translucent) surfaces for map overlays, which sit
+     directly on top of tiles rather than the page background. */
+  --map-control-bg: #ffffff;
+  --map-control-text: #0f172a;
+  --map-control-hover: rgba(15, 23, 42, 0.06);
+  --map-control-link: #0284c7;
+  --map-attribution-bg: rgba(255, 255, 255, 0.75);
+}
+
+.dark {
+  --bg: #05070d;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --text-faint: #4b5563;
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+
+  --map-control-bg: #0f1524;
+  --map-control-text: #e5e7eb;
+  --map-control-hover: rgba(255, 255, 255, 0.08);
+  --map-control-link: #7dd3fc;
+  --map-attribution-bg: rgba(5, 7, 13, 0.7);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  background: #05070d;
+  background: var(--bg);
+  color: var(--text-primary);
 }
 
 ::selection {
   background: rgba(99, 179, 237, 0.35);
 }
 
-/* Leaflet dark theme tweaks */
+/* Leaflet theme tweaks */
 .leaflet-container {
-  background: #0b0f1a;
+  background: var(--bg);
   font-family: inherit;
 }
 
@@ -23,33 +64,33 @@ body {
    loads after globals.css since it's bundled into the map's dynamic
    chunk and would otherwise win the cascade at equal specificity. */
 .leaflet-container .leaflet-popup-content-wrapper {
-  background: #0f1524;
-  color: #e5e7eb;
+  background: var(--map-control-bg);
+  color: var(--map-control-text);
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .leaflet-container .leaflet-popup-tip {
-  background: #0f1524;
+  background: var(--map-control-bg);
 }
 
 .leaflet-control-attribution {
-  background: rgba(5, 7, 13, 0.7) !important;
-  color: #9ca3af !important;
+  background: var(--map-attribution-bg) !important;
+  color: var(--text-secondary) !important;
 }
 
 .leaflet-control-attribution a {
-  color: #7dd3fc !important;
+  color: var(--map-control-link) !important;
 }
 
 .leaflet-control-zoom a {
-  background-color: #0f1524 !important;
-  color: #e5e7eb !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--map-control-bg) !important;
+  color: var(--map-control-text) !important;
+  border-color: var(--border) !important;
 }
 
 .leaflet-control-zoom a:hover {
-  background-color: #1a2236 !important;
+  background-color: var(--map-control-hover) !important;
 }
 
 .pulse-marker {

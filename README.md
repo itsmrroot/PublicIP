@@ -1,6 +1,6 @@
 # WhereAmI
 
-A modern IP lookup app built with Next.js — detects your public IP address, resolves its geolocation, and drops a live pin on an interactive map.
+A modern IP lookup app built with Next.js — detects your public IP address, resolves its geolocation, and drops a live pin on an interactive map. Supports dark/light mode and six languages, including full RTL for Arabic.
 
 <p align="center">
   <img src=".github/assets/preview.jpg" alt="WhereAmI app preview" width="800">
@@ -23,21 +23,24 @@ A modern IP lookup app built with Next.js — detects your public IP address, re
 
 - **Instant IP detection** — resolves your public IPv4/IPv6 address on load, no sign-in required
 - **Geolocation lookup** — city, region, country, postal code, timezone, ISP, and ASN
-- **Interactive dark map** — your location plotted on a Leaflet/OpenStreetMap map with a pulsing marker and popup
+- **Interactive map** — your location plotted on a Leaflet/OpenStreetMap map with a pulsing marker and popup, tiles switch between light and dark cartography with the theme
+- **Dark / light mode** — toggle in the header, persisted across visits, defaults to dark
+- **6 languages** — English, Español, Français, Deutsch, 中文, and العربية (with full RTL layout), persisted across visits
 - **Resilient fetching** — automatic fallback between IP providers if one is unavailable
 - **Copy-to-clipboard** and one-click refresh
 - **Modern, animated UI** — glassmorphism cards, gradient backgrounds, and Framer Motion transitions
 
 ## Tech Stack
 
-| Layer     | Choice                                                                   |
-| --------- | ------------------------------------------------------------------------ |
+| Layer     | Choice                                                                  |
+| --------- | ----------------------------------------------------------------------- |
 | Framework | [Next.js 14](https://nextjs.org/) (App Router)                          |
-| Language  | TypeScript                                                                |
-| Styling   | Tailwind CSS                                                              |
-| Animation | Framer Motion                                                             |
-| Map       | Leaflet + React Leaflet (OpenStreetMap / CARTO tiles)                    |
-| Icons     | Lucide                                                                    |
+| Language  | TypeScript                                                              |
+| Styling   | Tailwind CSS (CSS-variable theme tokens for dark/light mode)            |
+| Theming   | [next-themes](https://github.com/pacocoursey/next-themes)               |
+| Animation | Framer Motion                                                           |
+| Map       | Leaflet + React Leaflet (OpenStreetMap / CARTO tiles)                   |
+| Icons     | Lucide                                                                  |
 | IP data   | [ipwho.is](https://ipwho.is) with [ipapi.co](https://ipapi.co) fallback |
 
 ## Getting Started
@@ -69,17 +72,19 @@ npm run lint    # run ESLint
 ## Project Structure
 
 ```
-app/                  Next.js App Router pages, layout, global styles
-components/           IPMap, StatCard, MapErrorBoundary
-lib/                  IP-fetching logic and shared types
-.github/workflows/    CI pipeline
+app/                  Next.js App Router pages, layout, global styles + theme tokens
+components/           IPMap, StatCard, MapErrorBoundary, ThemeProvider/ThemeToggle,
+                      LanguageProvider/LanguageSwitcher
+lib/                  IP-fetching logic, shared types, and UI translations
+.github/workflows/    CI and GitHub Pages deploy pipelines
 ```
 
 ## How It Works
 
 1. On load, the client fetches IP + geolocation data directly from a public API (`ipwho.is`, falling back to `ipapi.co` on failure).
 2. The result — IP, city, region, country, postal code, timezone, ISP, and coordinates — renders into animated stat cards.
-3. The coordinates are handed to a Leaflet map, which flies to the location and drops a pulsing marker with a popup.
+3. The coordinates are handed to a Leaflet map, which flies to the location and drops a pulsing marker with a popup. Map tiles switch between CARTO's light and dark cartography to match the active theme.
+4. Theme (`next-themes`) and language selections are stored in `localStorage` and re-applied on every visit; switching to Arabic also flips the whole layout to RTL via `dir="rtl"`.
 
 Location is approximate, derived from IP geolocation — it typically resolves to the ISP's regional point of presence rather than your exact address.
 
