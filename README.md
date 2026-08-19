@@ -11,11 +11,12 @@ A modern IP lookup app built with Next.js — detects your public IP address, re
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript">
   <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-3-38bdf8?logo=tailwindcss">
   <img alt="CI" src="https://github.com/itsmrroot/PublicIP/actions/workflows/ci.yml/badge.svg">
+  <img alt="Deploy" src="https://github.com/itsmrroot/PublicIP/actions/workflows/deploy.yml/badge.svg">
 </p>
 
 ## Live Demo
 
-> 🔗 **[will be added once deployed]**
+### 🔗 [itsmrroot.github.io/PublicIP](https://itsmrroot.github.io/PublicIP/)
 
 ## Features
 
@@ -83,7 +84,9 @@ Location is approximate, derived from IP geolocation — it typically resolves t
 
 ## Deployment
 
-This is a static, client-rendered app with no server-side secrets, so it deploys cleanly to [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/), or any static/Node host that supports Next.js.
+This is a static, client-rendered app with no server-side secrets, so it exports cleanly with `next build` (`output: 'export'`) and deploys to any static host.
+
+It's currently deployed to **GitHub Pages**: on every push to `main`, [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds a static export (with the `/PublicIP` base path GitHub Pages requires for project sites) and publishes it via GitHub's official Pages actions. It would deploy just as easily to [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/) — for those, drop the `basePath`/`assetPrefix` config in `next.config.mjs`, since they serve from the domain root.
 
 ## License
 
